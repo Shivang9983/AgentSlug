@@ -4,7 +4,7 @@ import type { Tool } from "../types.ts";
 import { walk } from "./fsutil.ts";
 
 const MAX_MATCHES = 500;
-const MAX_FILE_BYTES = 5 * 1024 * 1024; // skip files bigger than 5MB
+const MAX_FILE_BYTES = 5 * 1024 * 1024; 
 
 export const grepTool: Tool = {
   name: "grep",
