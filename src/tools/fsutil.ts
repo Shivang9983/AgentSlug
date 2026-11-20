@@ -3,8 +3,7 @@ import { join, relative, sep } from "node:path";
 
 export const DEFAULT_IGNORES = [".git", "node_modules", "dist", "build", ".next", "coverage"];
 
-// turn a glob pattern (supports *, ?, **) into a RegExp that matches a relative,
-// forward-slash-normalized path
+
 export function globToRegExp(pattern: string): RegExp {
   const normalized = pattern.split(sep).join("/");
   let out = "";
@@ -12,7 +11,7 @@ export function globToRegExp(pattern: string): RegExp {
     const c = normalized[i];
     if (c === "*") {
       if (normalized[i + 1] === "*") {
-        // "**" matches across path segments (including none)
+     
         i++;
         if (normalized[i + 1] === "/") i++;
         out += "(?:.*\/)?";
