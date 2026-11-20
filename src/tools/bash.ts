@@ -1,12 +1,10 @@
 import { spawn } from "node:child_process";
 import type { Tool } from "../types.ts";
-// // import { findBash } from "./shell.ts";
-// import { truncateTail } from "./truncate.ts";
+
 import { existsSync } from "node:fs";
 import { delimiter, join } from "node:path";
 
-// Which bash to run. On Windows prefer Git Bash by its full path, like pi does:
-// plain "bash" can be the WSL launcher in System32, which sees a different file system.
+
 export function findBash(): string {
   if (process.platform !== "win32") return "bash";
   const candidates = [
@@ -16,7 +14,7 @@ export function findBash(): string {
   ];
   const known = candidates.find((p) => existsSync(p));
   if (known) return known;
-  // Git can live on any drive, so also look along PATH, skipping the WSL launcher in System32
+ 
   for (const dir of (process.env.PATH ?? "").split(delimiter)) {
     if (!dir || /\\system32$/i.test(dir.replace(/\\+$/, ""))) continue;
     const candidate = join(dir, "bash.exe");
